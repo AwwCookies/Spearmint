@@ -1,7 +1,7 @@
 {
   "Server": "chat.freenode.net",
   "Server Port": 6667,
-  "Server Password: "",
+  "Server Password": "",
   "Bind": "",
   "Nick": "Peppermint",
   "Real Name": "Peppermint Bot (Emma Jones)",

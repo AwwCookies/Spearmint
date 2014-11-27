@@ -12,7 +12,8 @@ int main(int argc, const char** argv) {
 -- Example in Ruby
 #!/usr/bin/env ruby
 require "json"
-data = JSON.parse(ARGV.join(" "))
+data = JSON.parse(ARGV[0])
+config = JSON.parse(ARGV[1])
 
 if data["Type"] == "PRIVMSG"
     puts "Ruby: Hello, World! :D"

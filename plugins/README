@@ -1,0 +1,3 @@
+Some notes:
+All paths are relative to 'main.py'
+Peppermint can run any executable; data is the first argument passed in to execuatble and the config is the second.

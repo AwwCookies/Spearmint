@@ -42,4 +42,18 @@ module Peppermint
     def Peppermint.devoice(channel, nick)
         puts "/devoice #{channel} #{nick}"
     end
+
+    def Peppermint.kick(channel, nick, msg="GTFO")
+        puts "/kick #{channel} #{nick} #{msg}"
+    end
+
+    def Peppermint.ban(channel, host)
+        puts "/ban #{channel} #{host}"
+    end
+
+    def Peppermint.unban(channel, host)
+        puts "/unban #{channel} #{host}"
+    end
+
+
 end

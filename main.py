@@ -12,6 +12,7 @@ import time
 import thread
 import subprocess
 import string
+import jrpc
 from termcolor import cprint
 
 
@@ -63,19 +64,31 @@ class Peppermint:
                         self.nick(args[1])
                     # Command INVITE
                     elif args[0] == "/invite":
-                        pass
+                        self.invite(args[1], args[2])
                     # Command OP
                     elif args[0] == "/op":
-                        pass
+                        self.op(args[1], args[2])
                     # Command DEOP
                     elif args[0] == "/deop":
-                        pass
+                        self.deop(args[1], args[2])
                     # Command VOICE
                     elif args[0] == "/voice":
-                        pass
+                        self.voice(args[1], args[2])
                     # Command DEVOICE
                     elif args[0] == "/devoie":
-                        pass
+                        self.devoice(args[1], args[2])
+                    # Command BAN
+                    elif args[0] == "/ban":
+                        self.ban(args[1], args[2])
+                    # Command UNBAN
+                    elif args[0] == "/unban":
+                        self.unban(args[1], args[2])
+                    # Command KICK
+                    elif args[0] == "/kick":
+                        if len(args) == 3:
+                            self.kick(args[1], args[2])
+                        elif len(args) >= 4:
+                            self.kick(args[1], args[2], ' '.join(args[3:]))
 
     def __connect(self):
         """ Does the initial connection to the IRC Server"""
@@ -157,8 +170,7 @@ class Peppermint:
             self.__buffer = ""
             data = {"Nick": "", "Host": "", "Type": "", "Channel": "", "Message": ""}
 
-    # ---- Basic Functions ---- #
-    # TODO: Invite, Topic, remove, op, deop, voice, devoice
+    # ---- Builtin Functions ---- #
     def me(self, channel, message):
         self.message(channel, "\x01ACTION " + message + "\x01")
 
@@ -181,6 +193,34 @@ class Peppermint:
         self.config["Nick"] = newnick
         self.__send("NICK %s" % newnick)
         return old_nick
+
+    def invite(self, channel, nick):
+        self.__send("INVITE %s %s" % (nick, channel))
+
+    def op(self, channel, nick):
+        self.__send("MODE %s +o %s" % (channel, nick))
+
+    def deop(self, channel, nick):
+        self.__send("MODE %s -o %s" % (channel, nick))
+
+    def voice(self, channel, nick):
+        self.__send("MODE %s +v %s" % (channel, nick))
+
+    def devoice(self, channel, nick):
+        self.__send("MODE %s -v %s" % (channel, nick))
+
+    def kick(self, channel, nick, msg="GTFO"):
+        self.__send("KICK %s %s :%s" % (channel, nick, msg))
+
+    def ban(self, channel, host):
+        self.__send("MODE %s +b %s" % (channel, host))
+
+    def unban(self, channel, host):
+        self.__send("MODE %s -b %s" % (channel, host))
+
+    def mute(self, channel, host):
+        pass
+
 
     # ---- --------------- ---- #
 

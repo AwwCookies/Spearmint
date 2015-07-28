@@ -1,12 +1,10 @@
 {
-  "Server": "chat.freenode.net",
-  "Server Port": 6667,
+  "Server": "127.0.0.1",
+  "Server Port": 5050,
   "Server Password": "",
   "Bind": "",
   "Nick": "Peppermint",
   "Real Name": "Peppermint Bot (Emma Jones)",
-  "Message Rate Limit": 2,
-  "Approved Channels": [],
   "Owner": [],
-  "Plugins": []
+  "Plugins": ["plugins/python/greet.py"]
 }

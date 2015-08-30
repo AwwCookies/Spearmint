@@ -1,4 +1,4 @@
-Peppermint
+Spearmint
 ==========
 
-A minty IRC Bot
+A minty AwwRC Bot
